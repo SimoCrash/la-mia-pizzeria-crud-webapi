@@ -32,5 +32,29 @@ namespace la_mia_pizzeria_static.Api
 
             return Ok(pizza);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult PutPizza(int id, [FromBody] Pizza pizza)
+        {
+            using var ctx = new PizzeriaContext();
+
+            var savedPizza = ctx.Pizzas.FirstOrDefault(p => p.Id == id);
+
+            if (savedPizza is null)
+            {
+                return NotFound();
+            }
+
+            savedPizza.Nome = pizza.Nome;
+            savedPizza.Descrizione = pizza.Descrizione;
+            savedPizza.CategoriaId = pizza.CategoriaId;
+            savedPizza.Prezzo = pizza.Prezzo;
+
+            ctx.SaveChanges();
+
+            return Ok(); 
+        }
+
+        
     }
 }
