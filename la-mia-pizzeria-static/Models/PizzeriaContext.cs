@@ -119,7 +119,7 @@ namespace la_mia_pizzeria_static.Models
                 Roles.AddRange(seed);
             }
 
-            if(Users.Any(u => u.Email == "admin@admin.it" || u.Email == "user@user.it") && !UserRoles.Any())
+            if(!Users.Any(u => u.Email == "admin@admin.it") && !Users.Any(u => u.Email == "user@user.it") && !UserRoles.Any())
             {
                 var admin = Users.First(u => u.Email == "admin@admin.it");
                 var user = Users.First(u => u.Email == "user@user.it");
