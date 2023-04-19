@@ -1,0 +1,55 @@
+﻿@model PizzaFormModel
+
+
+<h2>Modifica la Pizza</h2>
+<div>
+    <div class="container-form">
+        <form method="post" asp-asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Pizza.Id" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div>
+                <label asp-for="Pizza.Nome">Nome</label>
+                <input asp-for="Pizza.Nome" />
+                <span asp-validation-for="Pizza.Nome"></span>
+            </div>
+            <div>
+                <label asp-for="Pizza.Descrizione">Descrizione</label>
+                <input asp-for="Pizza.Descrizione" />
+                <span asp-validation-for="Pizza.Descrizione"></span>
+            </div>
+            <div>
+                <label asp-for="Pizza.Foto">Foto</label>
+                <input asp-for="Pizza.Foto" />
+                <span asp-validation-for="Pizza.Foto"></span>
+            </div>
+            <div>
+                <label asp-for="Pizza.Prezzo">Prezzo</label>
+                <input asp-for="Pizza.Prezzo" />
+                <span asp-validation-for="Pizza.Prezzo"></span>
+            </div>
+            <div>
+                <label asp-for="Pizza.CategoriaId">Categoria</label>
+                <select asp-for="Pizza.CategoriaId">
+                    <option value="0"></option>
+                    @foreach (Categoria categoria in Model.Categorie)
+                    {
+                        @if (Model.Pizza.CategoriaId == categoria.Id)
+                        {
+                            <option value="@categoria.Id" selected>@categoria.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@categoria.Id">@categoria.Title</option>
+
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Pizza.CategoriaId"></span>
+            </div>
+            <div>
+                <label asp-for="SelectedIngredienti">Ingredienti</label>
+                <select asp-for="SelectedIngredienti" multiple="multiple" asp-items="@Model.Ingredienti"></select>
+            </div>
+            <button type="submit">Modifica ora!</button>
+        </form>
+    </div>
+</div>

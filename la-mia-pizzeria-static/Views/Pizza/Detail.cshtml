@@ -1,0 +1,28 @@
+﻿@{
+    //var seed = new Pizza{
+    //        Nome = "Regina Margherita",
+    //        Descrizione = "Pizza margherita con mozzarella di Bufala",
+    //        Foto = "/img/bufala.jpg",
+    //        Prezzo = "12.00€"
+    //};
+    @model Pizza
+    var pizza = Model;
+}
+
+<div class="container-detail">
+    <h3>Nome: @pizza.Nome</h3>
+    <p>Categoria della pizza: @pizza.Categoria.Title</p>
+    <p>Descrizione: @pizza.Descrizione</p>
+    <p class="container-detail-img"><img src="@pizza.Foto" /></p>
+    <p>Prezzo: @pizza.Prezzo</p>
+    <div>
+        <h4>Ingredienti</h4>
+        <div>
+            @foreach (var ingrediente in pizza.Ingredienti!)
+            {
+                <p>@ingrediente.Name</p>
+            }
+        </div>
+    </div>
+</div>
+    
