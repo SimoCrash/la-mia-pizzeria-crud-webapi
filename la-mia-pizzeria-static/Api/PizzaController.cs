@@ -33,6 +33,18 @@ namespace la_mia_pizzeria_static.Api
             return Ok(pizza);
         }
 
+        [HttpPost]
+        public IActionResult CreatePizza(Pizza pizza)
+        {
+            using var ctx = new PizzeriaContext();
+
+            ctx.Pizzas.Add(pizza);
+
+            ctx.SaveChanges();
+
+            return Ok(pizza);
+        }
+
         [HttpPut("{id}")]
         public IActionResult PutPizza(int id, [FromBody] Pizza pizza)
         {
